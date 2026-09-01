@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arhioz-Dev | Backend Developer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Encabezado / Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="badge">Backend Developer</div>
+      <h1>Hola, soy <span class="highlight">Arhioz-Dev</span></h1>
+      <p class="subtitle">Especializado en diseñar APIs robustas, gestionar bases de datos y desplegar soluciones escalables con Python.</p>
+      
+      <div class="tech-stack">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">FastAPI</span>
+        <span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">SQLite</span>
+        <span class="tech-pill">SQLAlchemy</span>
+        <span class="tech-pill">Docker</span>
+        <span class="tech-pill">Git</span>
+        <span class="tech-pill">Linux Debian</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sección de Proyectos -->
+  <section class="projects-section container">
+    <h2><span class="accent-text">//</span> Proyectos Destacados</h2>
+    <p class="section-desc">Repositorios sincronizados automáticamente con GitHub.</p>
+    
+    <div id="projects-container" class="projects-grid">
+      <!-- Los proyectos se cargan dinámicamente con JavaScript -->
+      <div class="loading">Cargando repositorios...</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Arhioz-Dev. Desarrollado con HTML, CSS y JS.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
