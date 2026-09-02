@@ -11,7 +11,7 @@ const translations = {
     "exp1-role": "Desarrollador Backend Freelance",
     "exp1-company": "Trabajo Independiente",
     "exp1-body": "Diseño y desarrollo de APIs REST personalizadas utilizando Python y FastAPI. Implementación de bases de datos relacionales, autenticación de usuarios, empaquetado de aplicaciones con Docker y automatización de procesos para clientes particulares.",
-    "exp2-date": "Feb 2015 - Presente",
+    "exp2-date": "Febrero 2015 - Presente",
     "exp2-role": "Ingeniero de Soporte TI",
     "exp2-body": "Mantenimiento de infraestructura tecnológica, soporte técnico especializado a usuarios, diagnóstico de redes y optimización de sistemas informáticos institucionales.",
     "proj-title": "Proyectos Destacados",
@@ -19,7 +19,10 @@ const translations = {
     "proj1-desc": "Sistema creado con Python y FastAPI para administrar, gestionar y centralizar las operaciones de gimnasios, con su base de datos en PostgreSQL.",
     "proj2-desc": "Aplicación desarrollada con Python y FastAPI para visualizar, consultar y registrar animes y videojuegos, y agregarlos a un diario personal con persistencia en una base de datos PostgreSQL.",
     "btn-repo": "Ver Repositorio",
-    "footer-built": "Desarrollado con HTML, CSS y JS."
+    "footer-built": "Desarrollado con HTML, CSS y JS.",
+    "title-theme": "Cambiar modo",
+    "title-email": "Enviar correo electrónico",
+    "title-cv": "Descargar CV"
   },
   en: {
     "hero-greeting": "Hi, I'm",
@@ -32,7 +35,7 @@ const translations = {
     "exp1-role": "Freelance Backend Developer",
     "exp1-company": "Independent Work",
     "exp1-body": "Design and development of custom REST APIs using Python and FastAPI. Implementation of relational databases, user authentication, application containerization with Docker, and process automation for private clients.",
-    "exp2-date": "Feb 2015 - Present",
+    "exp2-date": "February 2015 - Present",
     "exp2-role": "IT Support Engineer",
     "exp2-body": "Maintenance of IT infrastructure, specialized user technical support, network diagnostics, and optimization of institutional computer systems.",
     "proj-title": "Featured Projects",
@@ -40,7 +43,10 @@ const translations = {
     "proj1-desc": "System built with Python and FastAPI to manage, administer, and centralize gym operations, utilizing a PostgreSQL database.",
     "proj2-desc": "Application developed with Python and FastAPI to view, query, and log anime and video games into a personal journal with PostgreSQL database persistence.",
     "btn-repo": "View Repository",
-    "footer-built": "Built with HTML, CSS, and JS."
+    "footer-built": "Built with HTML, CSS, and JS.",
+    "title-theme": "Toggle theme",
+    "title-email": "Send email",
+    "title-cv": "Download CV"
   }
 };
 
@@ -53,24 +59,34 @@ function setLanguage(lang) {
   localStorage.setItem('language', lang);
   document.documentElement.lang = lang;
 
-  // Actualizar todos los elementos con data-i18n
+  // Actualizar contenido de texto (data-i18n)
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
-    if (translations[lang][key]) {
+    if (translations[lang] && translations[lang][key]) {
       element.textContent = translations[lang][key];
     }
   });
 
-  // Actualizar icono y texto del botón
-  const flagSpan = langToggleBtn.querySelector('.flag-icon');
-  const textSpan = langToggleBtn.querySelector('.lang-text');
+  // Actualizar atributos TITLE (data-i18n-title)
+  document.querySelectorAll('[data-i18n-title]').forEach(element => {
+    const key = element.getAttribute('data-i18n-title');
+    if (translations[lang] && translations[lang][key]) {
+      element.setAttribute('title', translations[lang][key]);
+    }
+  });
 
-  if (lang === 'es') {
-    flagSpan.className = 'fi fi-mx flag-icon';
-    textSpan.textContent = 'MX';
-  } else {
-    flagSpan.className = 'fi fi-us flag-icon';
-    textSpan.textContent = 'US';
+  // Actualizar icono y texto del botón de banderas
+  const flagSpan = langToggleBtn ? langToggleBtn.querySelector('.flag-icon') : null;
+  const textSpan = langToggleBtn ? langToggleBtn.querySelector('.lang-text') : null;
+
+  if (flagSpan && textSpan) {
+    if (lang === 'es') {
+      flagSpan.className = 'fi fi-mx flag-icon';
+      textSpan.textContent = 'MX';
+    } else {
+      flagSpan.className = 'fi fi-us flag-icon';
+      textSpan.textContent = 'US';
+    }
   }
 }
 

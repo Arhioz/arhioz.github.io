@@ -35,7 +35,7 @@
         </button>
 
         <!-- Navegación Superior (Modo Claro/Oscuro) -->
-        <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar modo">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" data-i18n-title="title-theme" title="Cambiar modo">
           <i class="fa-solid fa-moon"></i>
         </button>
       </div>
@@ -48,7 +48,7 @@
       <div class="badge">Backend Developer</div>
       
       <div class="hero-header-flex">
-        <h1>Hola, soy <span class="highlight">Arhioz-Dev</span></h1>
+        <h1><span data-i18n="hero-greeting">Hola, soy</span> <span class="highlight">Arhioz-Dev</span></h1>
         
         <!-- Enlaces a Redes / Contacto / CV -->
         <div class="social-links">
@@ -58,16 +58,16 @@
           <a href="https://linkedin.com/in/patricio-rivera-backend-dev" target="_blank" title="LinkedIn" class="social-icon">
             <i class="fa-brands fa-linkedin"></i>
           </a>
-          <a href="mailto:riverac.93@gmail.com" title="Enviar correo electrónico" class="social-icon">
+          <a href="mailto:riverac.93@gmail.com" data-i18n-title="title-email" title="Enviar correo electrónico" class="social-icon">
             <i class="fa-solid fa-envelope"></i>
           </a>
-          <a href="./CV-Patricio-Rivera.pdf" download="CV-Patricio-Rivera.pdf" title="Descargar CV" class="social-icon cv-button">
+          <a href="./CV-Patricio-Rivera.pdf" download="CV-Patricio-Rivera.pdf" data-i18n-title="title-cv" title="Descargar CV" class="social-icon cv-button">
             <i class="fa-solid fa-file-pdf"></i>
           </a>
         </div>
       </div>
       
-      <p class="subtitle">
+      <p class="subtitle" data-i18n="hero-subtitle">
         Desarrollador autodidacta apasionado por el desarrollo backend y la arquitectura de software. Me especializo en diseñar y construir APIs REST rápidas y escalables con Python y FastAPI, implementar modelos de datos eficientes con SQLAlchemy y PostgreSQL/SQLite, y empaquetar soluciones listas para producción utilizando Docker sobre entornos Linux Debian y Windows. Enfocado en escribir código limpio, mantenible y con buenas prácticas de desarrollo.
       </p>
     </div>
@@ -75,8 +75,8 @@
 
   <!-- Sección de Tecnologias -->
   <section class="techs-section container">
-    <h2><span class="accent-text">//</span> Stack Tecnológico </h2>
-    <p class="section-desc">Tecnologias con las que trabajo.</p>
+    <h2><span class="accent-text">//</span> <span data-i18n="techs-title">Stack Tecnológico</span></h2>
+    <p class="section-desc" data-i18n="techs-desc">Tecnologías con las que trabajo.</p>
 
     <div class="tech-stack">
           <span class="tech-pill"><i class="devicon-python-plain colored"></i> Python</span>
@@ -95,8 +95,8 @@
 
   <!-- Sección de Proyectos -->
   <section class="projects-section container">
-    <h2><span class="accent-text">//</span> Proyectos Destacados</h2>
-    <p class="section-desc">Algunos proyectos en los que he trabajado.</p>
+    <h2><span class="accent-text">//</span> <span data-i18n="proj-title">Proyectos Destacados</span></h2>
+    <p class="section-desc" data-i18n="proj-desc">Algunos proyectos en los que he trabajado.</p>
     
     <div id="projects-container" class="projects-grid">
 
@@ -104,7 +104,7 @@
       <div class="project-card">
         <div>
           <h3 class="card-title">Arhioz-Gym{}</h3>
-          <p class="card-description">Sistema creado con Python y FastAPI para administrar, gestionar y centralizar las operaciones de gimnasios, con su base de datos en PostgreSQL.</p>
+          <p class="card-description" data-i18n="proj1-desc">Sistema creado con Python y FastAPI para administrar, gestionar y centralizar las operaciones de gimnasios, con su base de datos en PostgreSQL.</p>
         </div>
         
         <!-- Tecnologías usadas en este proyecto individual -->
@@ -117,7 +117,7 @@
         </div>
 
         <div class="card-footer">
-          <a href="https://github.com/Arhioz/arhioz_gym" target="_blank" class="btn-repo">Ver Repositorio &rarr;</a>
+          <a href="https://github.com/Arhioz/arhioz_gym" target="_blank" class="btn-repo"><span data-i18n="btn-repo">Ver Repositorio</span> &rarr;</a>
         </div>
       </div>
       <!-- ============================================================================================== -->
@@ -126,7 +126,7 @@
       <div class="project-card">
         <div>
           <h3 class="card-title">Zahori-Project{}</h3>
-          <p class="card-description">Aplicacion desarrollada con Python y Fastapi para visualizar, consultar y registrar animes y videojuegos, y agregarlos a un diario personal con persistencia en una base de datos Postgresql.</p>
+          <p class="card-description" data-i18n="proj2-desc">Aplicacion desarrollada con Python y Fastapi para visualizar, consultar y registrar animes y videojuegos, y agregarlos a un diario personal con persistencia en una base de datos Postgresql.</p>
         </div>
         
         <div class="project-tech-stack">
@@ -138,7 +138,7 @@
         </div>
 
         <div class="card-footer">
-          <a href="https://github.com/Arhioz/Zahori-Log" target="_blank" class="btn-repo">Ver Repositorio &rarr;</a>
+          <a href="https://github.com/Arhioz/Zahori-Log" target="_blank" class="btn-repo"><span data-i18n="btn-repo">Ver Repositorio</span> &rarr;</a>
         </div>
       </div>
       <!-- ============================================================================================== -->
@@ -149,8 +149,8 @@
 
   <!-- Sección de Experiencia Laboral (LÍNEA DE TIEMPO VERTICAL) -->
   <section class="experience-section container">
-    <h2><span class="accent-text">//</span> Experiencia Laboral </h2>
-    <p class="section-desc">Mi trayectoria profesional y recorrido en el sector tecnológico.</p>
+    <h2><span class="accent-text">//</span> <span data-i18n="exp-title">Experiencia Laboral</span></h2>
+    <p class="section-desc" data-i18n="exp-desc">Mi trayectoria profesional y recorrido en el sector tecnológico.</p>
 
     <div class="timeline">
       
@@ -158,10 +158,10 @@
       <div class="timeline-item right">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <span class="timeline-date">Enero 2026 - Presente</span>
-          <h3>Desarrollador Backend Freelance</h3>
-          <h4>Trabajo Independiente</h4>
-          <p>Diseño y desarrollo de APIs REST personalizadas utilizando Python y FastAPI. Implementación de bases de datos relacionales, autenticación de usuarios, empaquetado de aplicaciones con Docker y automatización de procesos para clientes particulares.</p>
+          <span class="timeline-date" data-i18n="exp1-date">Enero 2026 - Presente</span>
+          <h3 data-i18n="exp1-role">Desarrollador Backend Freelance</h3>
+          <h4 data-i18n="exp1-company">Trabajo Independiente</h4>
+          <p data-i18n="exp1-body">Diseño y desarrollo de APIs REST personalizadas utilizando Python y FastAPI. Implementación de bases de datos relacionales, autenticación de usuarios, empaquetado de aplicaciones con Docker y automatización de procesos para clientes particulares.</p>
         </div>
       </div>
 
@@ -169,10 +169,10 @@
       <div class="timeline-item left">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <span class="timeline-date">Feb 2015 - Presente</span>
-          <h3>Ingeniero de Soporte TI</h3>
+          <span class="timeline-date" data-i18n="exp2-date">Febrero 2015 - Presente</span>
+          <h3 data-i18n="exp2-role">Ingeniero de Soporte TI</h3>
           <h4>Secretaría de Educación y Cultura (SEC) - Hermosillo, Sonora</h4>
-          <p>Mantenimiento de infraestructura tecnológica, soporte técnico especializado a usuarios, diagnóstico de redes y optimización de sistemas informáticos institucionales.</p>
+          <p data-i18n="exp2-body">Mantenimiento de infraestructura tecnológica, soporte técnico especializado a usuarios, diagnóstico de redes y optimización de sistemas informáticos institucionales.</p>
         </div>
       </div>
 
@@ -182,7 +182,7 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; <span id="year"></span> Arhioz-Dev. Desarrollado con HTML, CSS y JS.</p>
+      <p>&copy; <span id="year"></span> Arhioz-Dev. <span data-i18n="footer-built">Desarrollado con HTML, CSS y JS.</span></p>
     </div>
   </footer>
 
