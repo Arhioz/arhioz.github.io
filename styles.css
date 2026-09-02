@@ -193,6 +193,33 @@ h2 {
   gap: 25px;
 }
 
+/* Techs Section */
+.techs-section {
+  padding: 60px 0;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.accent-text {
+  color: var(--primary-red);
+  font-family: var(--font-mono);
+}
+
+.section-desc {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.techs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
 /* Project Card */
 .project-card {
   background-color: var(--card-bg);
