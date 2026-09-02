@@ -1,7 +1,38 @@
 const GITHUB_USERNAME = 'Arhioz';
-// Nombre del topic/etiqueta que deben tener los repositorios a mostrar
 const FEATURED_TOPIC = 'portfolio';
 
+// --- Gestión de Modo Claro / Oscuro ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  let theme = document.documentElement.getAttribute('data-theme');
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    updateThemeIcon('dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    updateThemeIcon('light');
+  }
+});
+
+function updateThemeIcon(theme) {
+  const icon = themeToggleBtn.querySelector('i');
+  if (theme === 'light') {
+    icon.className = 'fa-solid fa-sun';
+  } else {
+    icon.className = 'fa-solid fa-moon';
+  }
+}
+
+// --- Consulta a la API de GitHub ---
 async function fetchGithubProjects() {
   const container = document.getElementById('projects-container');
   
@@ -14,7 +45,6 @@ async function fetchGithubProjects() {
     
     const repos = await response.json();
     
-    // Filtrar repositorios: que tengan la etiqueta 'portfolio' y que no sean forks
     const featuredRepos = repos.filter(repo => {
       const hasTopic = repo.topics && repo.topics.includes(FEATURED_TOPIC);
       return !repo.fork && hasTopic;
@@ -23,14 +53,14 @@ async function fetchGithubProjects() {
     if (featuredRepos.length === 0) {
       container.innerHTML = `
         <div class="no-projects">
-          No se encontraron repositorios etiquetados con "${FEATURED_TOPIC}".<br>
-          Añade el topic <code>${FEATURED_TOPIC}</code> en la configuración de tus repositorios públicos en GitHub.
+          No se encontraron repositorios etiquetados con "<code>${FEATURED_TOPIC}</code>".<br>
+          Añade el topic <code>${FEATURED_TOPIC}</code> a tus repositorios públicos preferidos en GitHub.
         </div>
       `;
       return;
     }
 
-    container.innerHTML = ''; // Limpiar mensaje de carga
+    container.innerHTML = '';
 
     featuredRepos.forEach(repo => {
       const card = document.createElement('div');
@@ -52,7 +82,7 @@ async function fetchGithubProjects() {
 
   } catch (error) {
     console.error('Error:', error);
-    container.innerHTML = `<div class="no-projects">Error al cargar los repositorios de GitHub. Verifica tu usuario.</div>`;
+    container.innerHTML = `<div class="no-projects">Error al cargar repositorios desde GitHub.</div>`;
   }
 }
 

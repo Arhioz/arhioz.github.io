@@ -5,28 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arhioz-Dev | Backend Developer</title>
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Fuentes Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Iconos de Tecnologías (Devicon) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  
+  <!-- Iconos de Redes (FontAwesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+  <!-- Navegación Superior (Modo Claro/Oscuro) -->
+  <nav class="top-nav">
+    <div class="container nav-container">
+      <div class="logo"></div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar modo">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </nav>
 
   <!-- Encabezado / Hero -->
   <header class="hero">
     <div class="container">
       <div class="badge">Backend Developer</div>
-      <h1>Hola, soy <span class="highlight">Arhioz-Dev</span></h1>
-      <p class="subtitle">Especializado en diseñar APIs robustas, gestionar bases de datos y desplegar soluciones escalables con Python.</p>
+      
+      <div class="hero-header-flex">
+        <h1>Hola, soy <span class="highlight">Arhioz-Dev</span></h1>
+        
+        <!-- Enlaces a Redes / Contacto -->
+        <div class="social-links">
+          <!-- REEMPLAZA CON TUS ENLACES REALES -->
+          <a href="https://github.com/Arhioz" target="_blank" title="GitHub" class="social-icon">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/patricio-rivera-backend-dev" target="_blank" title="LinkedIn" class="social-icon">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="riverac.93@gmail" title="Enviar correo electrónico" class="social-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+      
+      <p class="subtitle">
+        Apasionado por el desarrollo backend y la arquitectura de software. Me especializo en diseñar y construir APIs REST rápidas y escalables con Python y FastAPI, implementar modelos de datos eficientes con SQLAlchemy y PostgreSQL/SQLite, y empaquetar soluciones listas para producción utilizando Docker sobre entornos Linux Debian y Windows. Enfocado en escribir código limpio, mantenible y con buenas prácticas de desarrollo.
+      </p>
       
       <div class="tech-stack">
-        <span class="tech-pill">Python</span>
-        <span class="tech-pill">FastAPI</span>
-        <span class="tech-pill">PostgreSQL</span>
-        <span class="tech-pill">SQLite</span>
-        <span class="tech-pill">SQLAlchemy</span>
-        <span class="tech-pill">Docker</span>
-        <span class="tech-pill">Git</span>
-        <span class="tech-pill">Linux Debian</span>
+        <span class="tech-pill"><i class="devicon-python-plain colored"></i> Python</span>
+        <span class="tech-pill"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+        <span class="tech-pill"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+        <span class="tech-pill"><i class="devicon-sqlite-plain colored"></i> SQLite</span>
+        <span class="tech-pill"><i class="devicon-sqlalchemy-plain"></i> SQLAlchemy</span>
+        <span class="tech-pill"><i class="devicon-docker-plain colored"></i> Docker</span>
+        <span class="tech-pill"><i class="devicon-git-plain colored"></i> Git</span>
+        <span class="tech-pill"><i class="devicon-github-original"></i> GitHub</span>
+        <span class="tech-pill"><i class="devicon-debian-plain colored"></i> Linux Debian</span>
+        <span class="tech-pill"><i class="devicon-windows8-original colored"></i> Windows</span>
       </div>
     </div>
   </header>
@@ -34,11 +74,10 @@
   <!-- Sección de Proyectos -->
   <section class="projects-section container">
     <h2><span class="accent-text">//</span> Proyectos Destacados</h2>
-    <p class="section-desc">Repositorios sincronizados automáticamente con GitHub.</p>
+    <p class="section-desc">Repositorios sincronizados automáticamente desde GitHub.</p>
     
     <div id="projects-container" class="projects-grid">
-      <!-- Los proyectos se cargan dinámicamente con JavaScript -->
-      <div class="loading">Cargando repositorios...</div>
+      <div class="loading">Cargando repositorios desde GitHub...</div>
     </div>
   </section>
 
