@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   
+  <!-- Iconos de Banderas (Flag Icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
+
   <!-- Iconos de Tecnologías (Devicon) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
   
@@ -19,13 +22,23 @@
 </head>
 <body>
 
-  <!-- Navegación Superior (Modo Claro/Oscuro) -->
+  <!-- Navegación Superior -->
   <nav class="top-nav">
     <div class="container nav-container">
       <div class="logo"></div>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar modo">
-        <i class="fa-solid fa-moon"></i>
-      </button>
+
+      <div class="nav-controls">
+        <!-- Botón Cambiar Idioma -->
+        <button id="lang-toggle" class="lang-toggle" aria-label="Cambiar idioma" title="Cambiar idioma / Switch language">
+          <span class="fi fi-mx flag-icon"></span>
+          <span class="lang-text">MX</span>
+        </button>
+
+        <!-- Navegación Superior (Modo Claro/Oscuro) -->
+        <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar modo">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -104,7 +117,6 @@
         </div>
 
         <div class="card-footer">
-          <!-- Modifica la URL de tu proyecto aquí -->
           <a href="https://github.com/Arhioz/arhioz_gym" target="_blank" class="btn-repo">Ver Repositorio &rarr;</a>
         </div>
       </div>
