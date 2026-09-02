@@ -274,3 +274,17 @@ footer {
   color: var(--text-muted);
   font-size: 0.85rem;
 }
+
+/* Espaciado de tecnologías dentro de las tarjetas de proyectos */
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.project-tech-stack .tech-pill {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+}
