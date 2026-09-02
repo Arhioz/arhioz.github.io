@@ -220,6 +220,33 @@ h2 {
   gap: 25px;
 }
 
+/* Experience Section */
+.experience-section {
+  padding: 60px 0;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.accent-text {
+  color: var(--primary-red);
+  font-family: var(--font-mono);
+}
+
+.section-desc {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.techs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
 /* Project Card */
 .project-card {
   background-color: var(--card-bg);
@@ -314,4 +341,139 @@ footer {
 .project-tech-stack .tech-pill {
   font-size: 0.78rem;
   padding: 4px 10px;
+}
+
+/* Estilo especial para el botón del CV */
+.social-icon.cv-button:hover {
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* ==========================================================================
+   Estructura de la Línea de Tiempo (Timeline Experiencia)
+   ========================================================================== */
+.experience-section {
+  padding: 60px 0;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 40px auto 0;
+}
+
+/* Línea vertical central */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: var(--card-border);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+/* Contenedor general de cada empleo */
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+/* Punto central (Dot) sobre la línea */
+.timeline-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  right: -7px;
+  background-color: var(--bg-color);
+  border: 3px solid var(--primary-red);
+  top: 25px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Posicionamiento a la izquierda */
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+/* Posicionamiento a la derecha */
+.timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-item.right .timeline-dot {
+  left: -7px;
+}
+
+/* Tarjeta del contenido de cada experiencia */
+.timeline-content {
+  padding: 20px 25px;
+  background-color: var(--card-bg);
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.timeline-content:hover {
+  border-color: var(--primary-red);
+  transform: translateY(-2px);
+}
+
+.timeline-date {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--primary-red);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.timeline-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.timeline-content h4 {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.timeline-content p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Diseño Responsive para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 15px;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0%;
+    text-align: left;
+  }
+
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: 13px;
+  }
 }
