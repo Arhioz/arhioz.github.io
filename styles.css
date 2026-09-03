@@ -1,3 +1,7 @@
+/* ==========================================================================
+   1. VARIABLES DE TEMA Y ESTILOS GLOBALES
+   ========================================================================== */
+
 :root {
   /* Variables Modo Oscuro (Predeterminado) */
   --bg-color: #0d0d0d;
@@ -24,10 +28,16 @@
   --social-icon-color: #000000; /* Negro en modo claro */
 }
 
+/* Reset básico y configuraciones generales del documento */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Desplazamiento para evitar que el nav fijo oculte los títulos */
 }
 
 body {
@@ -38,16 +48,52 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Centrado global de la página */
+/* Contenedor principal con centrado global */
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* Barra superior y Toggle de Tema */
+/* Configuración de títulos genéricos y texto de acento */
+h2 {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.accent-text {
+  color: var(--primary-red);
+  font-family: var(--font-mono);
+}
+
+.section-desc {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+
+/* ==========================================================================
+   2. BARRA DE NAVEGACIÓN (TOP NAV)
+   ========================================================================== */
+
+/* Barra superior fija */
 .top-nav {
-  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(13, 13, 13, 0.85); /* Transparencia para modo oscuro */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 15px 0;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="light"] .top-nav {
+  background-color: rgba(247, 247, 248, 0.85); /* Transparencia para modo claro */
 }
 
 .nav-container {
@@ -56,12 +102,110 @@ body {
   align-items: center;
 }
 
+/* Logo de la barra de navegación */
 .logo {
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 1.1rem;
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 35px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.10);
+}
+
+/* Alineación del menú superior a la derecha */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Menú de enlaces de navegación (Escritorio) */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-menu a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--primary-red);
+}
+
+/* Botón Hamburguesa (Oculto en pantallas grandes) */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+
+.nav-toggle:hover {
+  color: var(--primary-red);
+}
+
+/* Controles de cambio de idioma y tema */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Botón de cambio de idioma */
+.lang-toggle {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.lang-toggle:hover {
+  border-color: var(--primary-red);
+  color: var(--primary-red);
+}
+
+.lang-toggle .flag-icon {
+  width: 18px;
+  height: 13px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+/* Botón de cambio de tema (Claro/Oscuro) */
 .theme-toggle {
   background: transparent;
   border: 1px solid var(--card-border);
@@ -82,9 +226,14 @@ body {
   color: var(--primary-red);
 }
 
-/* Hero Section */
+
+/* ==========================================================================
+   3. SECCIÓN HERO (ENCABEZADO PRINCIPAL)
+   ========================================================================== */
+
 .hero {
   padding: 40px 0 60px;
+  margin-top: 60px; /* Offset para evitar que la barra de navegación fija solape el contenido */
   border-bottom: 1px solid var(--card-border);
 }
 
@@ -119,7 +268,13 @@ h1 {
   color: var(--primary-red);
 }
 
-/* Iconos de Redes Sociales */
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+/* Iconos y botones de redes sociales en el Hero */
 .social-links {
   display: flex;
   align-items: center;
@@ -138,10 +293,23 @@ h1 {
   transform: translateY(-2px);
 }
 
-.subtitle {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-bottom: 30px;
+.social-icon.cv-button:hover {
+  transform: translateY(-2px) scale(1.1);
+}
+
+.social-icon.open-contact-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   4. SECCIÓN STACK TECNOLÓGICO
+   ========================================================================== */
+
+.techs-section {
+  padding: 60px 0;
 }
 
 .tech-stack {
@@ -150,6 +318,7 @@ h1 {
   gap: 10px;
 }
 
+/* Pastillas informativas de tecnologías (Pills) */
 .tech-pill {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -167,192 +336,11 @@ h1 {
   font-size: 1rem;
 }
 
-/* Projects Section */
-.projects-section {
-  padding: 60px 0;
-}
-
-h2 {
-  font-family: var(--font-mono);
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.accent-text {
-  color: var(--primary-red);
-  font-family: var(--font-mono);
-}
-
-.section-desc {
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-/* Techs Section */
-.techs-section {
-  padding: 60px 0;
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.accent-text {
-  color: var(--primary-red);
-  font-family: var(--font-mono);
-}
-
-.section-desc {
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-
-.techs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-/* Experience Section */
-.experience-section {
-  padding: 60px 0;
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.accent-text {
-  color: var(--primary-red);
-  font-family: var(--font-mono);
-}
-
-.section-desc {
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-
-.techs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-/* Project Card */
-.project-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary-red);
-  box-shadow: 0 4px 20px var(--red-glow);
-}
-
-.card-title {
-  font-size: 1.25rem;
-  color: var(--text-main);
-  margin-bottom: 10px;
-  font-family: var(--font-mono);
-}
-
-.card-description {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-
-.card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid var(--card-border);
-}
-
-.card-lang {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--primary-red);
-}
-
-.btn-repo {
-  color: var(--text-main);
-  text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  padding: 6px 12px;
-  border-radius: 4px;
-  background-color: transparent;
-  border: 1px solid var(--card-border);
-  transition: all 0.2s ease;
-}
-
-.btn-repo:hover {
-  background-color: var(--primary-red);
-  border-color: var(--primary-red);
-  color: #ffffff;
-}
-
-.loading, .no-projects {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  padding: 40px 0;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 30px 0;
-  border-top: 1px solid var(--card-border);
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-/* Espaciado de tecnologías dentro de las tarjetas de proyectos */
-.project-tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.project-tech-stack .tech-pill {
-  font-size: 0.78rem;
-  padding: 4px 10px;
-}
-
-/* Estilo especial para el botón del CV */
-.social-icon.cv-button:hover {
-  transform: translateY(-2px) scale(1.1);
-}
 
 /* ==========================================================================
-   Estructura de la Línea de Tiempo (Timeline Experiencia)
+   5. SECCIÓN DE EXPERIENCIA LABORAL (TIMELINE)
    ========================================================================== */
+
 .experience-section {
   padding: 60px 0;
 }
@@ -375,7 +363,7 @@ footer {
   margin-left: -1px;
 }
 
-/* Contenedor general de cada empleo */
+/* Contenedor de cada item de la línea de tiempo */
 .timeline-item {
   padding: 10px 40px;
   position: relative;
@@ -384,7 +372,7 @@ footer {
   box-sizing: border-box;
 }
 
-/* Punto central (Dot) sobre la línea */
+/* Punto indicador sobre la línea vertical */
 .timeline-dot {
   position: absolute;
   width: 14px;
@@ -397,13 +385,13 @@ footer {
   z-index: 1;
 }
 
-/* Posicionamiento a la izquierda */
+/* Items posicionados a la izquierda */
 .timeline-item.left {
   left: 0;
   text-align: right;
 }
 
-/* Posicionamiento a la derecha */
+/* Items posicionados a la derecha */
 .timeline-item.right {
   left: 50%;
   text-align: left;
@@ -413,7 +401,7 @@ footer {
   left: -7px;
 }
 
-/* Tarjeta del contenido de cada experiencia */
+/* Tarjetas de contenido dentro del Timeline */
 .timeline-content {
   padding: 20px 25px;
   background-color: var(--card-bg);
@@ -456,130 +444,115 @@ footer {
   line-height: 1.5;
 }
 
-/* Diseño Responsive para dispositivos móviles */
-@media screen and (max-width: 768px) {
-  .timeline::after {
-    left: 20px;
-  }
 
-  .timeline-item {
-    width: 100%;
-    padding-left: 50px;
-    padding-right: 15px;
-  }
+/* ==========================================================================
+   6. SECCIÓN DE PROYECTOS
+   ========================================================================== */
 
-  .timeline-item.left,
-  .timeline-item.right {
-    left: 0%;
-    text-align: left;
-  }
-
-  .timeline-item.left .timeline-dot,
-  .timeline-item.right .timeline-dot {
-    left: 13px;
-  }
+.projects-section {
+  padding: 60px 0;
 }
 
-/* Contenedor de controles en navegación */
-.nav-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Botón de Cambio de Idioma */
-.lang-toggle {
-  background: transparent;
-  border: 1px solid var(--card-border);
-  color: var(--text-main);
-  padding: 6px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.lang-toggle:hover {
-  border-color: var(--primary-red);
-  color: var(--primary-red);
-}
-
-.lang-toggle .flag-icon {
-  width: 18px;
-  height: 13px;
-  border-radius: 2px;
-  object-fit: cover;
-}
-
-/* Scroll suave en toda la página */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Offset para que la barra fija no tape los títulos al hacer scroll */
-}
-
-/* Barra superior fija */
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: rgba(13, 13, 13, 0.85); /* Fondo translúcido en tema oscuro */
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--card-border);
-  padding: 15px 0;
-  transition: background-color 0.3s ease;
-}
-
-[data-theme="light"] .top-nav {
-  background-color: rgba(247, 247, 248, 0.85); /* Fondo translúcido en tema claro */
-}
-
-/* Alineación de menú y controles */
-.nav-right {
-  display: flex;
-  align-items: center;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 25px;
 }
 
-.nav-menu {
+/* Estructura de la tarjeta de proyecto */
+.project-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 25px;
   display: flex;
-  list-style: none;
-  gap: 20px;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.nav-menu a {
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-red);
+  box-shadow: 0 4px 20px var(--red-glow);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+}
+
+.card-description {
   color: var(--text-muted);
-  text-decoration: none;
   font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  margin-bottom: 20px;
+  flex-grow: 1;
 }
 
-.nav-menu a:hover {
+/* Espaciado de tecnologías dentro de las tarjetas */
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.project-tech-stack .tech-pill {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--card-border);
+}
+
+.card-lang {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   color: var(--primary-red);
 }
 
-.social-icon.open-contact-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
+/* Botón de acceso al repositorio */
+.btn-repo {
+  color: var(--text-main);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid var(--card-border);
+  transition: all 0.2s ease;
 }
 
-/* Espaciado del hero para que no quede cubierto por el menú fijo */
-.hero {
-  margin-top: 60px;
+.btn-repo:hover {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+  color: #ffffff;
 }
 
-/* ==========================================
-   Estilos de la Ventana Emergente (Modal)
-   ========================================== */
+/* Estados dinámicos de carga y estado vacío */
+.loading, .no-projects {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  padding: 40px 0;
+}
+
+
+/* ==========================================================================
+   7. VENTANA EMERGENTE (MODAL DE CONTACTO)
+   ========================================================================== */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -695,34 +668,122 @@ html {
   background-color: var(--primary-red-hover);
 }
 
-/* Responsivo para móviles */
+
+/* ==========================================================================
+   8. PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid var(--card-border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+
+/* ==========================================================================
+   9. DISEÑO RESPONSIVO (MEDIA QUERIES MÓVIL)
+   ========================================================================== */
+
 @media screen and (max-width: 768px) {
+  /* Reestructuración del encabezado de navegación */
   .nav-container {
-    flex-direction: column;
-    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
   }
+
+  .logo, .logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .nav-right {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Mostrar botón hamburguesa en la izquierda */
+  .nav-toggle {
+    display: block;
+    order: 1;
+  }
+
+  /* Controles (Idioma y Tema) pegados a la derecha */
+  .nav-controls {
+    order: 2;
+    margin-left: auto;
+  }
+
+  /* Menú desplegable flotante alineado a la izquierda */
   .nav-menu {
-    gap: 12px;
-    font-size: 0.85rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 24px;
+    gap: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    
+    /* Estado oculto */
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
   }
+
+  /* Tipografía monoespaciada para los enlaces móviles */
+  .nav-menu a {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    width: 100%;
+    display: block;
+  }
+
+  /* Mostrar menú al activar la clase vía JS */
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Ajuste de espacio del Hero para móviles */
   .hero {
-    margin-top: 100px;
+    margin-top: 80px;
   }
-}
 
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
+  /* Reorganización de la línea de tiempo a una sola columna */
+  .timeline::after {
+    left: 20px;
+  }
 
-.logo-img {
-  height: 35px; /* Ajusta la altura según las proporciones del logo */
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.2s ease;
-}
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 15px;
+  }
 
-.logo-img:hover {
-  transform: scale(1.05);
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0%;
+    text-align: left;
+  }
+
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: 13px;
+  }
 }

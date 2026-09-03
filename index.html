@@ -30,7 +30,12 @@
       </a>
 
       <div class="nav-right">
-        <ul class="nav-menu">
+        <!-- Botón de Menú Hamburguesa (visible solo en móviles) -->
+        <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
           <li><a href="#inicio" data-i18n="menu-home">Inicio</a></li>
           <li><a href="#stack" data-i18n="menu-stack">Stack</a></li>
           <li><a href="#proyectos" data-i18n="menu-projects">Proyectos</a></li>

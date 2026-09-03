@@ -1,4 +1,6 @@
-// --- Diccionario de Traducciones ---
+/* ==========================================================================
+   1. DICCIONARIO DE TRADUCCIONES (i18n)
+   ========================================================================== */
 const translations = {
   es: {
     "hero-greeting": "Hola, soy",
@@ -78,12 +80,13 @@ const translations = {
     "placeholder-name": "Your name",
     "placeholder-email": "your@email.com",
     "placeholder-subject": "Message subject",
-    "placeholder-message": "Write your message here...",
+    "placeholder-message": "Write your message here..."
   }
 };
 
-// --- Gestor de Idioma ---
-const langToggleBtn = document.getElementById('lang-toggle');
+/* ==========================================================================
+   2. GESTOR DE IDIOMA (INTERNACIONALIZACIÓN)
+   ========================================================================== */
 let currentLang = localStorage.getItem('language') || 'es';
 
 function setLanguage(lang) {
@@ -91,106 +94,153 @@ function setLanguage(lang) {
   localStorage.setItem('language', lang);
   document.documentElement.lang = lang;
 
-  // Actualizar contenido de texto (data-i18n)
+  // Traducción de textos internos
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
-    if (translations[lang] && translations[lang][key]) {
+    if (translations[lang]?.[key]) {
       element.textContent = translations[lang][key];
     }
   });
 
-  // Actualizar atributos TITLE (data-i18n-title)
+  // Traducción de atributos 'title'
   document.querySelectorAll('[data-i18n-title]').forEach(element => {
     const key = element.getAttribute('data-i18n-title');
-    if (translations[lang] && translations[lang][key]) {
+    if (translations[lang]?.[key]) {
       element.setAttribute('title', translations[lang][key]);
     }
   });
 
-  // Actualizar atributos PLACEHOLDER (data-i18n-placeholder)
+  // Traducción de atributos 'placeholder' en formularios
   document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
     const key = element.getAttribute('data-i18n-placeholder');
-    if (translations[lang] && translations[lang][key]) {
+    if (translations[lang]?.[key]) {
       element.setAttribute('placeholder', translations[lang][key]);
     }
   });
 
-  // Actualizar icono y texto del botón de banderas
-  const flagSpan = langToggleBtn ? langToggleBtn.querySelector('.flag-icon') : null;
-  const textSpan = langToggleBtn ? langToggleBtn.querySelector('.lang-text') : null;
-
-  if (flagSpan && textSpan) {
-    if (lang === 'es') {
-      flagSpan.className = 'fi fi-mx flag-icon';
-      textSpan.textContent = 'MX';
-    } else {
-      flagSpan.className = 'fi fi-us flag-icon';
-      textSpan.textContent = 'US';
+  // Actualización del botón selector de idioma (bandera y texto)
+  const langToggleBtn = document.getElementById('lang-toggle');
+  if (langToggleBtn) {
+    const flagSpan = langToggleBtn.querySelector('.flag-icon');
+    const textSpan = langToggleBtn.querySelector('.lang-text');
+    if (flagSpan && textSpan) {
+      flagSpan.className = lang === 'es' ? 'fi fi-mx flag-icon' : 'fi fi-us flag-icon';
+      textSpan.textContent = lang === 'es' ? 'MX' : 'US';
     }
   }
 }
 
-langToggleBtn.addEventListener('click', () => {
-  const newLang = currentLang === 'es' ? 'en' : 'es';
-  setLanguage(newLang);
-});
-
-// Inicializar idioma
-setLanguage(currentLang);
-
-// --- Gestión del Modal de Contacto ---
-const contactModal = document.getElementById('contact-modal');
-const openContactBtns = document.querySelectorAll('.open-contact-btn');
-const closeModalBtn = document.getElementById('close-modal');
-
-openContactBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    contactModal.classList.add('active');
-  });
-});
-
-closeModalBtn.addEventListener('click', () => {
-  contactModal.classList.remove('active');
-});
-
-// Cerrar clicando fuera del recuadro modal
-window.addEventListener('click', (e) => {
-  if (e.target === contactModal) {
-    contactModal.classList.remove('active');
+/* ==========================================================================
+   3. GESTOR DE TEMA (MODO CLARO / OSCURO)
+   ========================================================================== */
+function updateThemeIcon(theme) {
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  if (!themeToggleBtn) return;
+  const icon = themeToggleBtn.querySelector('i');
+  if (icon) {
+    icon.className = theme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
   }
-});
+}
 
-// --- Gestión de Modo Claro / Oscuro ---
-const themeToggleBtn = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme) {
+function initTheme() {
+  const currentTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
   updateThemeIcon(currentTheme);
+
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = activeTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+  }
 }
 
-themeToggleBtn.addEventListener('click', () => {
-  let theme = document.documentElement.getAttribute('data-theme');
-  if (theme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-    updateThemeIcon('dark');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-    updateThemeIcon('light');
+/* ==========================================================================
+   4. MANEJO DE EVENTOS Y DOM (AL CORTAR / CARGAR LA PÁGINA)
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  // Inicialización de Tema e Idioma
+  initTheme();
+  setLanguage(currentLang);
+
+  // Selector de Idioma
+  const langToggleBtn = document.getElementById('lang-toggle');
+  if (langToggleBtn) {
+    langToggleBtn.addEventListener('click', () => {
+      const newLang = currentLang === 'es' ? 'en' : 'es';
+      setLanguage(newLang);
+    });
+  }
+
+  // Menú Hamburguesa Móvil
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+
+  if (navToggle && navMenu) {
+    // Abrir / Cerrar menú hamburguesa
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navMenu.classList.toggle('active');
+      const icon = navToggle.querySelector('i');
+      if (icon) {
+        icon.className = navMenu.classList.contains('active') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+      }
+    });
+
+    // Cerrar menú al hacer clic en cualquier enlace
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        const icon = navToggle.querySelector('i');
+        if (icon) icon.className = 'fa-solid fa-bars';
+      });
+    });
+
+    // Cerrar menú al hacer clic fuera del contenedor
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+        navMenu.classList.remove('active');
+        const icon = navToggle.querySelector('i');
+        if (icon) icon.className = 'fa-solid fa-bars';
+      }
+    });
+  }
+
+  // Modal de Contacto
+  const contactModal = document.getElementById('contact-modal');
+  const openContactBtns = document.querySelectorAll('.open-contact-btn');
+  const closeModalBtn = document.getElementById('close-modal');
+
+  if (contactModal) {
+    openContactBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        contactModal.classList.add('active');
+      });
+    });
+
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', () => {
+        contactModal.classList.remove('active');
+      });
+    }
+
+    window.addEventListener('click', (e) => {
+      if (e.target === contactModal) {
+        contactModal.classList.remove('active');
+      }
+    });
+  }
+
+  // Año dinámico en el Pie de Página
+  const yearSpan = document.getElementById('year');
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
   }
 });
-
-function updateThemeIcon(theme) {
-  const icon = themeToggleBtn.querySelector('i');
-  if (theme === 'light') {
-    icon.className = 'fa-solid fa-sun';
-  } else {
-    icon.className = 'fa-solid fa-moon';
-  }
-}
-
-// Año dinámico en footer
-document.getElementById('year').textContent = new Date().getFullYear();
