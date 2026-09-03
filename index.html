@@ -20,12 +20,23 @@
   <!-- Iconos de Redes (FontAwesome) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body id="inicio">
 
   <!-- Navegación Superior -->
   <nav class="top-nav">
     <div class="container nav-container">
-      <div class="logo"></div>
+      <a href="#inicio" class="logo-link">
+        <img src="./Akatsuki.png" alt="Arhioz-Dev Logo" class="logo-img">
+      </a>
+
+      <div class="nav-right">
+        <ul class="nav-menu">
+          <li><a href="#inicio" data-i18n="menu-home">Inicio</a></li>
+          <li><a href="#stack" data-i18n="menu-stack">Stack</a></li>
+          <li><a href="#proyectos" data-i18n="menu-projects">Proyectos</a></li>
+          <li><a href="#experiencia" data-i18n="menu-experience">Experiencia</a></li>
+          <li><a href="#contacto" class="open-contact-btn" data-i18n="menu-contact">Contacto</a></li>
+        </ul>
 
       <div class="nav-controls">
         <!-- Botón Cambiar Idioma -->
@@ -58,9 +69,9 @@
           <a href="https://linkedin.com/in/patricio-rivera-backend-dev" target="_blank" title="LinkedIn" class="social-icon">
             <i class="fa-brands fa-linkedin"></i>
           </a>
-          <a href="mailto:riverac.93@gmail.com" data-i18n-title="title-email" title="Enviar correo electrónico" class="social-icon">
+          <button type="button" class="social-icon open-contact-btn" data-i18n-title="title-email" title="Enviar correo electrónico">
             <i class="fa-solid fa-envelope"></i>
-          </a>
+          </button>
           <a href="./CV-Patricio-Rivera.pdf" download="CV-Patricio-Rivera.pdf" data-i18n-title="title-cv" title="Descargar CV" class="social-icon cv-button">
             <i class="fa-solid fa-file-pdf"></i>
           </a>
@@ -74,7 +85,7 @@
   </header>
 
   <!-- Sección de Tecnologias -->
-  <section class="techs-section container">
+  <section id="stack" class="techs-section container">
     <h2><span class="accent-text">//</span> <span data-i18n="techs-title">Stack Tecnológico</span></h2>
     <p class="section-desc" data-i18n="techs-desc">Tecnologías con las que trabajo.</p>
 
@@ -94,7 +105,7 @@
   </section>
 
   <!-- Sección de Proyectos -->
-  <section class="projects-section container">
+  <section id="proyectos" class="projects-section container">
     <h2><span class="accent-text">//</span> <span data-i18n="proj-title">Proyectos Destacados</span></h2>
     <p class="section-desc" data-i18n="proj-desc">Algunos proyectos en los que he trabajado.</p>
     
@@ -148,7 +159,7 @@
   </section>
 
   <!-- Sección de Experiencia Laboral (LÍNEA DE TIEMPO VERTICAL) -->
-  <section class="experience-section container">
+  <section id="experiencia" class="experience-section container">
     <h2><span class="accent-text">//</span> <span data-i18n="exp-title">Experiencia Laboral</span></h2>
     <p class="section-desc" data-i18n="exp-desc">Mi trayectoria profesional y recorrido en el sector tecnológico.</p>
 
@@ -178,6 +189,36 @@
 
     </div>
   </section>
+
+  <!-- Sección para modal envio de correos -->
+
+  <div id="contact-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="close-modal" class="close-btn">&times;</button>
+      <h3 data-i18n="modal-title">Enviar Mensaje</h3>
+      <p data-i18n="modal-desc">Déjame tus datos y me pondré en contacto contigo a la brevedad.</p>
+      
+      <form id="contact-form" action="https://formspree.io/f/mdeozlaq" method="POST">
+        <div class="form-group">
+          <label for="name" data-i18n="modal-name">Nombre</label>
+          <input type="text" id="name" name="name" required data-i18n-placeholder="placeholder-name" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label for="email" data-i18n="modal-email">Correo Electrónico</label>
+          <input type="email" id="email" name="email" required data-i18n-placeholder="placeholder-email" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label for="subject" data-i18n="modal-subject">Asunto</label>
+          <input type="text" id="subject" name="subject" required required data-i18n-placeholder="placeholder-subject" placeholder="Asunto del mensaje">
+        </div>
+        <div class="form-group">
+          <label for="message" data-i18n="modal-message">Mensaje</label>
+          <textarea id="message" name="message" rows="4" required data-i18n-placeholder="placeholder-message" placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+        <button type="submit" class="btn-send" data-i18n="modal-send">Enviar Correo</button>
+      </form>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>

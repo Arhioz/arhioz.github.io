@@ -110,6 +110,7 @@ body {
 }
 
 h1 {
+  font-family: var(--font-mono);
   font-size: 2.8rem;
   font-weight: 700;
 }
@@ -172,6 +173,7 @@ h1 {
 }
 
 h2 {
+  font-family: var(--font-mono);
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 5px;
@@ -512,4 +514,215 @@ footer {
   height: 13px;
   border-radius: 2px;
   object-fit: cover;
+}
+
+/* Scroll suave en toda la página */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset para que la barra fija no tape los títulos al hacer scroll */
+}
+
+/* Barra superior fija */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(13, 13, 13, 0.85); /* Fondo translúcido en tema oscuro */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 15px 0;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="light"] .top-nav {
+  background-color: rgba(247, 247, 248, 0.85); /* Fondo translúcido en tema claro */
+}
+
+/* Alineación de menú y controles */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-menu a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--primary-red);
+}
+
+.social-icon.open-contact-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Espaciado del hero para que no quede cubierto por el menú fijo */
+.hero {
+  margin-top: 60px;
+}
+
+/* ==========================================
+   Estilos de la Ventana Emergente (Modal)
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--primary-red);
+}
+
+.modal-content h3 {
+  margin-bottom: 5px;
+  font-size: 1.4rem;
+}
+
+.modal-content p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 5px;
+  border: 1px solid var(--card-border);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-red);
+}
+
+.btn-send {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-red);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.btn-send:hover {
+  background-color: var(--primary-red-hover);
+}
+
+/* Responsivo para móviles */
+@media screen and (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nav-menu {
+    gap: 12px;
+    font-size: 0.85rem;
+  }
+  .hero {
+    margin-top: 100px;
+  }
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 35px; /* Ajusta la altura según las proporciones del logo */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
 }

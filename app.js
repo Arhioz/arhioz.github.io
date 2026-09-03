@@ -22,7 +22,23 @@ const translations = {
     "footer-built": "Desarrollado con HTML, CSS y JS.",
     "title-theme": "Cambiar modo",
     "title-email": "Enviar correo electrónico",
-    "title-cv": "Descargar CV"
+    "title-cv": "Descargar CV",
+    "menu-home": "Inicio",
+    "menu-stack": "Stack",
+    "menu-projects": "Proyectos",
+    "menu-experience": "Experiencia",
+    "menu-contact": "Contacto",
+    "modal-title": "Enviar Mensaje",
+    "modal-desc": "Déjame tus datos y me pondré en contacto contigo a la brevedad.",
+    "modal-name": "Nombre",
+    "modal-email": "Correo Electrónico",
+    "modal-subject": "Asunto",
+    "modal-message": "Mensaje",
+    "modal-send": "Enviar Correo",
+    "placeholder-name": "Tu nombre",
+    "placeholder-email": "tu@email.com",
+    "placeholder-subject": "Asunto del mensaje",
+    "placeholder-message": "Escribe tu mensaje aquí..."
   },
   en: {
     "hero-greeting": "Hi, I'm",
@@ -46,7 +62,23 @@ const translations = {
     "footer-built": "Built with HTML, CSS, and JS.",
     "title-theme": "Toggle theme",
     "title-email": "Send email",
-    "title-cv": "Download CV"
+    "title-cv": "Download CV",
+    "menu-home": "Home",
+    "menu-stack": "Stack",
+    "menu-projects": "Projects",
+    "menu-experience": "Experience",
+    "menu-contact": "Contact",
+    "modal-title": "Send Message",
+    "modal-desc": "Leave me your details, and I will get in touch with you ASAP.",
+    "modal-name": "Name",
+    "modal-email": "Email",
+    "modal-subject": "Subject",
+    "modal-message": "Message",
+    "modal-send": "Send Email",
+    "placeholder-name": "Your name",
+    "placeholder-email": "your@email.com",
+    "placeholder-subject": "Message subject",
+    "placeholder-message": "Write your message here...",
   }
 };
 
@@ -75,6 +107,14 @@ function setLanguage(lang) {
     }
   });
 
+  // Actualizar atributos PLACEHOLDER (data-i18n-placeholder)
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+    const key = element.getAttribute('data-i18n-placeholder');
+    if (translations[lang] && translations[lang][key]) {
+      element.setAttribute('placeholder', translations[lang][key]);
+    }
+  });
+
   // Actualizar icono y texto del botón de banderas
   const flagSpan = langToggleBtn ? langToggleBtn.querySelector('.flag-icon') : null;
   const textSpan = langToggleBtn ? langToggleBtn.querySelector('.lang-text') : null;
@@ -98,6 +138,28 @@ langToggleBtn.addEventListener('click', () => {
 // Inicializar idioma
 setLanguage(currentLang);
 
+// --- Gestión del Modal de Contacto ---
+const contactModal = document.getElementById('contact-modal');
+const openContactBtns = document.querySelectorAll('.open-contact-btn');
+const closeModalBtn = document.getElementById('close-modal');
+
+openContactBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    contactModal.classList.add('active');
+  });
+});
+
+closeModalBtn.addEventListener('click', () => {
+  contactModal.classList.remove('active');
+});
+
+// Cerrar clicando fuera del recuadro modal
+window.addEventListener('click', (e) => {
+  if (e.target === contactModal) {
+    contactModal.classList.remove('active');
+  }
+});
 
 // --- Gestión de Modo Claro / Oscuro ---
 const themeToggleBtn = document.getElementById('theme-toggle');
