@@ -20,6 +20,11 @@ const translations = {
     "proj-desc": "Algunos proyectos en los que he trabajado.",
     "proj1-desc": "Sistema creado con Python y FastAPI para administrar, gestionar y centralizar las operaciones de gimnasios, con su base de datos en PostgreSQL.",
     "proj2-desc": "Aplicación desarrollada con Python y FastAPI para visualizar, consultar y registrar animes y videojuegos, y agregarlos a un diario personal con persistencia en una base de datos PostgreSQL.",
+    "proj3-title": "Infraestructura Privada - Homelab{}",
+    "proj3-desc": "Despliegue y administración de servidor Linux (Debian 13 Headless) administrado mediante Docker y CasaOS, implementación de red privada MESH (Tailscale VPN) para acceso remoto seguro sin exposición de puertos al exterior, desarrollo de un bot en Python (discord.py / Cogs / Systemd) para monitoreo en tiempo real de recursos (CPU, RAM, Temperatura), gestión remota de contenedores y ejecución segura de respaldos con validación por PIN, configuración de sistema de alimentación ininterrumpida (UPS) mediante NUT para apagados seguros automatizados ordenados ante fallos eléctricos, estrategia de montaje resiliente de discos mediante UUIDs/`nofail` y desarrollo de scripts Bash automatizados para respaldos *hot-backup* semanales de configuraciones e infraestructura.",
+    "proj3-short-desc": "Despliegue y administración de servidor Linux (Debian) administrado mediante Docker y CasaOS, con acceso remoto seguro VPN, bot de monitoreo y sistema de respaldo.",
+    "modal-stack-title": "// Tecnologías aplicadas:",
+    "btn-more": "Ver Más →",
     "btn-repo": "Ver Repositorio",
     "footer-built": "Desarrollado con HTML, CSS y JS.",
     "title-theme": "Cambiar modo",
@@ -60,6 +65,11 @@ const translations = {
     "proj-desc": "Some projects I have worked on.",
     "proj1-desc": "System built with Python and FastAPI to manage, administer, and centralize gym operations, utilizing a PostgreSQL database.",
     "proj2-desc": "Application developed with Python and FastAPI to view, query, and log anime and video games into a personal journal with PostgreSQL database persistence.",
+    "proj3-title": "Private Infraestructure - Homelab{}",
+    "proj3-desc": "Deployment and administration of a headless Linux server (Debian 13) managed via Docker and CasaOS; implementation of a private MESH network (Tailscale VPN) for secure remote access without exposing external ports; development of a Python bot (discord.py / Cogs / Systemd) for real-time resource monitoring (CPU, RAM, Temp), remote container management, and secure backup execution with PIN validation; configuration of an Uninterruptible Power Supply (UPS) system using NUT for graceful automated shutdowns during power outages; resilient drive mounting strategy using UUIDs/`nofail`; and development of automated Bash scripts for weekly hot-backups of system configurations and infrastructure.",
+    "proj3-short-desc": "Deployment and management of a Linux (Debian) server using Docker and CasaOS, with secure remote VPN access, monitoring bot, and backup system.",
+    "modal-stack-title": "// Tech Stack used:",
+    "btn-more": "Learn More →",
     "btn-repo": "View Repository",
     "footer-built": "Built with HTML, CSS, and JS.",
     "title-theme": "Toggle theme",
@@ -234,6 +244,28 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
       if (e.target === contactModal) {
         contactModal.classList.remove('active');
+      }
+    });
+  }
+
+  // --- Modal Detalles Proyecto 3 ---
+  const proj3Modal = document.getElementById('proj3-modal');
+  const openProj3Btn = document.getElementById('open-proj3-modal');
+  const closeProj3Btn = document.getElementById('close-proj3-modal');
+
+  if (proj3Modal && openProj3Btn) {
+    openProj3Btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      proj3Modal.classList.add('active');
+    });
+
+    closeProj3Btn.addEventListener('click', () => {
+      proj3Modal.classList.remove('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === proj3Modal) {
+        proj3Modal.classList.remove('active');
       }
     });
   }
