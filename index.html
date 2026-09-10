@@ -281,8 +281,9 @@
       <!-- Visor de PDF sin la barra de herramientas predeterminada del navegador -->
       <div class="cv-viewer-container">
         <object id="cv-object" data="./CV-Patricio-Rivera-ES.pdf#toolbar=0&navpanes=0" type="application/pdf" width="100%" height="100%">
-          <p>Tu navegador no puede desplegar el PDF. Puedes 
-            <a id="cv-fallback-link" href="./CV-Patricio-Rivera-ES.pdf" download>descargarlo aquí</a>.
+          <p>
+            <span data-i18n="modal-cv-error-text">Tu navegador no puede desplegar el PDF. Puedes.</span>
+            <a id="cv-fallback-link" href="./CV-Patricio-Rivera-ES.pdf" download data-i18n="modal-cv-error-link">descargarlo aquí</a>.
           </p>
         </object>
       </div>
