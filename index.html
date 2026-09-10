@@ -80,9 +80,9 @@
           <button type="button" class="social-icon open-contact-btn" data-i18n-title="title-email" title="Enviar correo electrónico">
             <i class="fa-solid fa-envelope"></i>
           </button>
-          <a href="./CV-Patricio-Rivera.pdf" download="CV-Patricio-Rivera.pdf" data-i18n-title="title-cv" title="Descargar CV" class="social-icon cv-button">
+          <button id="open-cv-modal" class="social-icon cv-button" data-i18n-title="modal-cv-title" title="Ver CV" aria-label="Ver CV">
             <i class="fa-solid fa-file-pdf"></i>
-          </a>
+          </button>
         </div>
       </div>
       
@@ -270,6 +270,25 @@
         <span class="tech-pill"><i class="devicon-tailscale-plain colored"></i> Tailscale</span>
         <span class="tech-pill"><i class="devicon-discord-plain"></i> Discord</span>
       </div>
+    </div>
+  </div>
+
+  <!-- Modal para Visualización de CV -->
+  <div id="cv-modal" class="modal-overlay">
+    <div class="modal-content cv-modal-content">
+      <button id="close-cv-modal" class="close-btn">&times;</button>
+      
+      <!-- Visor de PDF sin la barra de herramientas predeterminada del navegador -->
+      <div class="cv-viewer-container">
+        <object id="cv-object" data="./CV-Patricio-Rivera-ES.pdf#toolbar=0&navpanes=0" type="application/pdf" width="100%" height="100%">
+          <p>Tu navegador no puede desplegar el PDF. Puedes <a href="./CV-Patricio-Rivera-ES.pdf" download>descargarlo aquí</a>.</p>
+        </object>
+      </div>
+
+      <!-- Botón de Descarga al final -->
+      <a href="./CV-Patricio-Rivera-ES.pdf" download="CV-Patricio-Rivera-ES.pdf" id="cv-download-btn" class="btn-send btn-download-cv" data-i18n="modal-cv-descargar">
+        <i class="fa-solid fa-download"></i> Descargar CV
+      </a>
     </div>
   </div>
 

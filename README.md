@@ -56,7 +56,7 @@ Aunque este sitio web sirve de interfaz visual, mi enfoque principal está orien
 
 * [] Integrar enlaces directos a la documentación OpenAPI / Swagger UI de los endpoints desplegados.
 
-* [] Agregar un botón de descarga directa para mi CV en formato PDF.
+* [x] Agregar un botón de descarga directa para mi CV en formato PDF.
 
 ## 📬 Contacto
 

@@ -42,6 +42,8 @@ const translations = {
     "modal-subject": "Asunto",
     "modal-message": "Mensaje",
     "modal-send": "Enviar Correo",
+    "modal-cv-title": "Ver CV",
+    "modal-cv-descargar": "Descargar CV",
     "placeholder-name": "Tu nombre",
     "placeholder-email": "tu@email.com",
     "placeholder-subject": "Asunto del mensaje",
@@ -87,6 +89,8 @@ const translations = {
     "modal-subject": "Subject",
     "modal-message": "Message",
     "modal-send": "Send Email",
+    "modal-cv-title": "View CV",
+    "modal-cv-descargar": "Download CV",
     "placeholder-name": "Your name",
     "placeholder-email": "your@email.com",
     "placeholder-subject": "Message subject",
@@ -127,6 +131,35 @@ function setLanguage(lang) {
       element.setAttribute('placeholder', translations[lang][key]);
     }
   });
+
+  // Definir ruta y nombre del archivo según el idioma
+  const pdfPath = lang === 'en' ? './CV-Patricio-Rivera-EN.pdf' : './CV-Patricio-Rivera-ES.pdf';
+  const pdfName = lang === 'en' ? 'CV-Patricio-Rivera-EN.pdf' : 'CV-Patricio-Rivera-ES.pdf';
+
+  // Actualizar el visor PDF (<object>)
+  const cvObject = document.getElementById('cv-object');
+  if (cvObject) {
+    cvObject.setAttribute('data', `${pdfPath}#toolbar=0&navpanes=0`);
+  }
+
+  // Actualizar el enlace de respaldo en caso de que el navegador no soporte PDF
+  const cvFallbackLink = document.getElementById('cv-fallback-link');
+  if (cvFallbackLink) {
+    cvFallbackLink.setAttribute('href', pdfPath);
+    cvFallbackLink.setAttribute('download', pdfName);
+  }
+
+  // Cambiar archivo de descarga de CV según el idioma activo
+  const cvBtn = document.getElementById('cv-download-btn');
+  if (cvBtn) {
+    if (lang === 'en') {
+      cvBtn.setAttribute('href', './CV-Patricio-Rivera-EN.pdf');
+      cvBtn.setAttribute('download', 'CV-Patricio-Rivera-EN.pdf');
+    } else {
+      cvBtn.setAttribute('href', './CV-Patricio-Rivera-ES.pdf');
+      cvBtn.setAttribute('download', 'CV-Patricio-Rivera-ES.pdf');
+    }
+  }
 
   // Actualización del botón selector de idioma (bandera y texto)
   const langToggleBtn = document.getElementById('lang-toggle');
@@ -244,6 +277,33 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
       if (e.target === contactModal) {
         contactModal.classList.remove('active');
+      }
+    });
+  }
+
+  // --- Modal de CV ---
+  const cvModal = document.getElementById('cv-modal');
+  const openCvBtn = document.getElementById('open-cv-modal');
+  const closeCvModalBtn = document.getElementById('close-cv-modal');
+
+  if (cvModal && openCvBtn) {
+    // Abrir Modal
+    openCvBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      cvModal.classList.add('active');
+    });
+
+    // Cerrar con el botón X
+    if (closeCvModalBtn) {
+      closeCvModalBtn.addEventListener('click', () => {
+        cvModal.classList.remove('active');
+      });
+    }
+
+    // Cerrar al hacer clic fuera de la ventana
+    window.addEventListener('click', (e) => {
+      if (e.target === cvModal) {
+        cvModal.classList.remove('active');
       }
     });
   }
