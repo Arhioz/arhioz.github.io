@@ -105,6 +105,12 @@ const translations = {
 /* ==========================================================================
    2. GESTOR DE IDIOMA (INTERNACIONALIZACIÓN)
    ========================================================================== */
+// Función auxiliar para detectar si el usuario accede desde un celular/móvil
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+//
 let currentLang = localStorage.getItem('language') || 'es';
 
 function setLanguage(lang) {
@@ -139,6 +145,41 @@ function setLanguage(lang) {
   // Definir ruta y nombre del archivo según el idioma
   const pdfPath = lang === 'en' ? './CV-Patricio-Rivera-EN.pdf' : './CV-Patricio-Rivera-ES.pdf';
   const pdfName = lang === 'en' ? 'CV-Patricio-Rivera-EN.pdf' : 'CV-Patricio-Rivera-ES.pdf';
+
+  // Adaptación del contenido según el tipo de dispositivo
+  const cvViewerContainer = document.querySelector('.cv-viewer-container');
+
+  if (cvViewerContainer) {
+    if (isMobileDevice()) {
+      // EN MÓVIL: Muestra un aviso visual y un botón para abrir el PDF en una nueva pestaña
+      cvViewerContainer.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 30px 20px; text-align: center;">
+          <i class="fa-solid fa-file-pdf" style="font-size: 3.5rem; color: var(--primary-red); margin-bottom: 15px;"></i>
+          <p style="margin-bottom: 20px; font-size: 0.95rem; color: var(--text-main);">
+            ${lang === 'en' 
+              ? 'Mobile browser preview is limited.' 
+              : 'La visualización en navegador móvil está limitada.'}
+          </p>
+          <a href="${pdfPath}" target="_blank" class="btn-download-cv" style="text-decoration: none;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> 
+            ${lang === 'en' ? 'Open PDF in new tab' : 'Abrir PDF en pestaña nueva'}
+          </a>
+        </div>
+      `;
+    } else {
+      // EN ESCRITORIO: Renderiza el visor <object> normalmente
+      cvViewerContainer.innerHTML = `
+        <object id="cv-object" data="${pdfPath}#toolbar=0&navpanes=0" type="application/pdf" width="100%" height="100%">
+          <p>
+            ${lang === 'en' ? 'Your browser cannot display the PDF. You can' : 'Tu navegador no puede desplegar el PDF. Puedes'}
+            <a id="cv-fallback-link" href="${pdfPath}" download="${pdfName}">
+              ${lang === 'en' ? 'download it here' : 'descargarlo aquí'}
+            </a>.
+          </p>
+        </object>
+      `;
+    }
+  }
 
   // Actualizar el visor PDF (<object>)
   const cvObject = document.getElementById('cv-object');
